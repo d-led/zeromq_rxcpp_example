@@ -7,3 +7,6 @@
 [submodule "deps/rxcpp"]
 	path = deps/rxcpp
 	url = https://github.com/Reactive-Extensions/RxCpp.git
+[submodule "deps/sole"]
+	path = deps/sole
+	url = https://github.com/r-lyeh/sole.git

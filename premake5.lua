@@ -18,7 +18,8 @@ zeromq_lib = {
 
 includedirs {
 	'deps/cppzmq',
-	'deps/rxcpp/Rx/v2/src'
+	'deps/rxcpp/Rx/v2/src',
+	'deps/sole'
 }
 
 -- libzmq config
@@ -71,7 +72,8 @@ make_console_app('server',{
 ------------------------------------
 make_console_app('worker',{
 	'src/worker/*.h',
-	'src/worker/*.cpp'
+	'src/worker/*.cpp',
+	'deps/sole/sole.cpp'
 })
 
 	make_cpp11()
