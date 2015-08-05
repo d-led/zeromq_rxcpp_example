@@ -1,0 +1,6 @@
+[submodule "deps/cppzmq"]
+	path = deps/cppzmq
+	url = https://github.com/zeromq/cppzmq.git
+[submodule "premake"]
+	path = premake
+	url = https://github.com/d-led/premake-meta-cpp.git
