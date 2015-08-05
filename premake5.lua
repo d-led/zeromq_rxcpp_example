@@ -55,7 +55,6 @@ function link_zeromq()
 			zeromq_lib.osx,
 		}
 	configuration '*'
-		links 'g3log'
 end
 
 ------------------------------------
