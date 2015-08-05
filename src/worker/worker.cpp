@@ -1,5 +1,9 @@
 #include <iostream>
+#include <zmq.hpp>
+#include <rxcpp/rx.hpp>
+#include <uuid.hpp>
 
 int main() {
-	std::cout<<"hello from worker"<<std::endl;
+	auto uuid = Utility::UUID::random().to_string();
+	std::cout<<"worker: "<<uuid<<std::endl;
 }
