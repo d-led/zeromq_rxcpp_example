@@ -35,7 +35,7 @@ int main() {
 
 	// non-blocking subscription
 	worker_pings.subscribe([](std::string const& s) {
-	    std::cout << "worker says:" << s << std::endl;
+	    std::cout << s << std::endl;
 	});
 
 	// start loop on input thread and block until complete
