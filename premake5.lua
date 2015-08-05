@@ -18,6 +18,7 @@ zeromq_lib = {
 
 includedirs {
 	'deps/cppzmq',
+	'deps/rxcpp/Rx/v2/src'
 }
 
 -- libzmq config
