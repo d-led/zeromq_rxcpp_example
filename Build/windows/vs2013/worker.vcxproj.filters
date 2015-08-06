@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="deps">
+      <UniqueIdentifier>{F1A1957C-DDD8-960D-86C5-7C1072DB120F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="deps\sole">
+      <UniqueIdentifier>{53F60066-BF60-B5DC-089F-668274489331}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\worker">
+      <UniqueIdentifier>{96B8EC82-8270-2ED0-EB77-072CD74EC9C0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\deps\sole\sole.cpp">
+      <Filter>deps\sole</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\worker\worker.cpp">
+      <Filter>src\worker</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
