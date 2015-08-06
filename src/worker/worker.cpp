@@ -31,7 +31,6 @@ int main() {
     });
 
     heartbeat
-    	// .connect_forever()
 	    .as_blocking()
 	    .subscribe()
     ;
