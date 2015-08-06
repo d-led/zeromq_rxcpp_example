@@ -18,8 +18,8 @@ int main() {
 
 	bool to_kill=false;
 	
-	// publish input from cin from a single input thread
-	auto worker_pings = rxcpp::observable<>::
+	// publish stream of heartbeats
+	auto worker_heartbeats = rxcpp::observable<>::
 	    create<std::string>(
 	        [&pull_from_workers,&to_kill](rxcpp::subscriber<std::string> out){
 	            while (!to_kill) {
@@ -34,7 +34,7 @@ int main() {
 	    publish();
 
 	// non-blocking subscription
-	worker_pings.subscribe([](std::string const& s) {
+	worker_heartbeats.subscribe([](std::string const& s) {
 	    std::cout << s << std::endl;
 	});
 
@@ -42,7 +42,7 @@ int main() {
 	// todo: remove explicit heartbeat output
 
 	// start loop on input thread and block until complete
-	worker_pings.
+	worker_heartbeats.
 	    connect_forever().
 	    as_blocking().
 	    subscribe();
