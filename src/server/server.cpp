@@ -38,6 +38,9 @@ int main() {
 	    std::cout << s << std::endl;
 	});
 
+	// todo: worker appearing and disappearing
+	// todo: remove explicit heartbeat output
+
 	// start loop on input thread and block until complete
 	worker_pings.
 	    connect_forever().
