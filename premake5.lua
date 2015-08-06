@@ -8,7 +8,7 @@ platforms { "x64" }
 zeromq_root = {
 	x32 = [[C:\Program Files (x86)\ZeroMQ 3.2.4\]],
 	x64 = [[C:\Program Files\ZeroMQ 3.2.4\]],
-	osx = [[/usr/local/Cellar/zeromq/4.1.2/]]
+	osx = [[/usr/local/Cellar/zeromq/4.1.2/]] -- brew install zeromq
 }
 
 zeromq_lib = {
