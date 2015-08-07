@@ -19,7 +19,9 @@ zeromq_lib = {
 includedirs {
 	'deps/cppzmq',
 	'deps/rxcpp/Rx/v2/src',
-	'deps/sole'
+	'deps/sole',
+	'deps/picojson_serializer',
+	'deps/picojson'
 }
 
 -- libzmq config
