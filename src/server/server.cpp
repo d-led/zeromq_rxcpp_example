@@ -56,6 +56,24 @@ int main() {
                     std::cout << key << ":" << beat << std::endl;
                 }
             );
+
+            using timeout_t = std::pair<std::chrono::steady_clock::duration, std::chrono::steady_clock::time_point>;
+
+            //auto timeout = g
+            //    //.combine_latest(3 second beat)
+            //    .map([](int64_t) { return std::chrono::steady_clock::now(); })
+            //    .scan(  std::make_pair(std::chrono::steady_clock::duration(),std::chrono::steady_clock::now()),
+            //            [](timeout_t last, std::chrono::steady_clock::time_point now) {
+            //        return std::make_pair(now - last.second, now);
+            //    })
+            //    .filter([](timeout_t entry) {
+            //        return entry.first > std::chrono::seconds(3);
+            //    })
+            //;
+
+            //timeout.subscribe([key](timeout_t) {
+            //    std::cout << "Worker " << key << " timeout";
+            //});
         }
     );
 
