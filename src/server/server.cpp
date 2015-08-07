@@ -30,16 +30,18 @@ int main() {
                 }
                 out.on_completed();
             }).
-        //as_dynamic().
+        as_dynamic().
         subscribe_on(rxcpp::synchronize_new_thread()).
         publish();
 
     // non-blocking subscription
-    worker_heartbeats.subscribe([](std::string const& s) {
-        std::cout << s << std::endl;
-    });
+    worker_heartbeats
+        .subscribe([](std::string const& s) {
+            std::cout << s << std::endl;
+        })
+        ;
 
-    // todo: worker appearing and disappearin1g
+    // todo: worker appearing and disappearing identifiable via timeout
     // todo: remove explicit heartbeat output
 
     // start loop on input thread and block until complete

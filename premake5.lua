@@ -6,13 +6,13 @@ make_solution 'zeromq_rxcpp_example'
 platforms { "x64" }
 
 zeromq_root = {
-	x32 = [[C:\Program Files (x86)\ZeroMQ 3.2.4\]],
-	x64 = [[C:\Program Files\ZeroMQ 3.2.4\]],
+	x32 = [[C:\Program Files (x86)\ZeroMQ 4.0.4\]],
+	x64 = [[C:\Program Files\ZeroMQ 4.0.4\]],
 	osx = [[/usr/local/Cellar/zeromq/4.1.2/]] -- brew install zeromq
 }
 
 zeromq_lib = {
-	win = 'libzmq-v110-mt-3_2_4',
+	win = 'libzmq-v120-mt-4_0_4',
 	osx = 'zmq'
 }
 
@@ -87,4 +87,3 @@ make_console_app('stop_all',{
 
 	make_cpp11()
 	link_zeromq()
-	
