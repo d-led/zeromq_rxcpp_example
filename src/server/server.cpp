@@ -40,11 +40,14 @@ int main() {
 
 	// todo: worker appearing and disappearing
 	// todo: remove explicit heartbeat output
-	// todo: get rid of the blocking observable, as it uses a conditional variable, which boils down to a tight loop
 
 	// start loop on input thread and block until complete
 	worker_heartbeats.
-	    connect_forever().
-	    as_blocking().
-	    subscribe();
+		connect_forever().
+		//as_blocking().
+		subscribe();
+
+	while (!to_kill) {
+		std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	}
 }
