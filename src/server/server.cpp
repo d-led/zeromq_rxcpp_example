@@ -41,11 +41,23 @@ int main() {
         publish();
 
     // non-blocking subscription
-    worker_heartbeats
-        .subscribe([](worker_heartbeat const& s) {
-            std::cout << s.id << ":" << s.beat << std::endl;
-        })
+    auto grouped_heartbeats = worker_heartbeats
+        .group_by(
+            [](worker_heartbeat const& s) { return s.id; },
+            [](worker_heartbeat const& s) { return s.beat; }
+            )
         ;
+
+    grouped_heartbeats.subscribe(
+        [](rxcpp::grouped_observable<std::string, int64_t> g) {
+            auto key = g.get_key();
+            g.subscribe(
+                [key](int64_t beat) {
+                    std::cout << key << ":" << beat << std::endl;
+                }
+            );
+        }
+    );
 
     // todo: worker appearing and disappearing identifiable via timeout
     // todo: remove explicit heartbeat output
