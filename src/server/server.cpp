@@ -1,8 +1,12 @@
+#define PICOJSON_USE_INT64
+#include <picojson_serializer.h> //including before any mention of max macro
+
 #include <iostream>
 #include <zmq.hpp>
 #include <rxcpp/rx.hpp>
 
 #include "../common/zmq_cancellation_token.h"
+#include "../common/dtos.h"
 
 int main() {
 
@@ -21,12 +25,14 @@ int main() {
     
     // publish stream of heartbeats
     auto worker_heartbeats = rxcpp::observable<>::
-        create<std::string>(
-            [&pull_from_workers,&token](rxcpp::subscriber<std::string> out){
+        create<worker_heartbeat>(
+            [&pull_from_workers,&token](rxcpp::subscriber<worker_heartbeat> out){
                 while (true) {
                     zmq::message_t request;
                     pull_from_workers.recv(&request);
-                    out.on_next(std::string(static_cast<char*>(request.data()),request.size()));
+                    worker_heartbeat res;
+                    picojson::convert::from_string(std::string(static_cast<char*>(request.data()), request.size()), res);
+                    out.on_next(res);
                 }
                 out.on_completed();
             }).
@@ -36,8 +42,8 @@ int main() {
 
     // non-blocking subscription
     worker_heartbeats
-        .subscribe([](std::string const& s) {
-            std::cout << s << std::endl;
+        .subscribe([](worker_heartbeat const& s) {
+            std::cout << s.id << ":" << s.beat << std::endl;
         })
         ;
 

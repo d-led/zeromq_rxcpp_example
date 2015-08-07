@@ -10,10 +10,10 @@ int main() {
     zmq::socket_t kill_pub(context, ZMQ_PUB);
     kill_pub.bind("tcp://*:5556");
 
-    for (auto i = 0; i < 3;i++) {
+    for (auto i = 0; i < 3; i++) {
         static const char* stop = "stop";
         zmq::message_t msg(strlen(stop) + 1);
-        snprintf((char*)msg.data(), strlen(stop), stop);
+        snprintf((char*)msg.data(), strlen(stop) + 1, stop);
 
         kill_pub.send(msg);
         std::this_thread::sleep_for(std::chrono::seconds(1));
