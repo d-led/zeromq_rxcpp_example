@@ -79,3 +79,12 @@ make_console_app('worker',{
 	make_cpp11()
 	link_zeromq()
 
+------------------------------------
+make_console_app('stop_all',{
+	'src/common/stop_all.cpp',
+	'src/common/*.h'
+})
+
+	make_cpp11()
+	link_zeromq()
+	

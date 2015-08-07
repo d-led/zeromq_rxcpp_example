@@ -11,7 +11,7 @@ class zmq_cancellation_token {
 
     inline void connect() {
         sub.connect("tcp://localhost:5556");
-        static const char* stop = "stop";
+        static const char* stop = "st";
         sub.setsockopt(ZMQ_SUBSCRIBE, stop, strlen(stop));
     }
 

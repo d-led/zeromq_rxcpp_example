@@ -23,7 +23,7 @@ int main() {
     auto worker_heartbeats = rxcpp::observable<>::
         create<std::string>(
             [&pull_from_workers,&token](rxcpp::subscriber<std::string> out){
-                while (!token.cancelled()) {
+                while (true) {
                     zmq::message_t request;
                     pull_from_workers.recv(&request);
                     out.on_next(std::string(static_cast<char*>(request.data()),request.size()));
