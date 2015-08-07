@@ -10,3 +10,6 @@
 [submodule "deps/sole"]
 	path = deps/sole
 	url = https://github.com/r-lyeh/sole.git
+[submodule "deps/picojson_serializer"]
+	path = deps/picojson_serializer
+	url = https://github.com/d-led/picojson_serializer.git
