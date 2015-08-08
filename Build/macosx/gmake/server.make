@@ -16,7 +16,7 @@ ifeq ($(config),debug_x32)
   TARGET = $(TARGETDIR)/server
   OBJDIR = ../../../obj/macosx/gmake/x32/Debug/server
   DEFINES += -D_DEBUG
-  INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I/usr/local/Cellar/zeromq/4.1.2/include
+  INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I../../../deps/picojson_serializer -I../../../deps/picojson -I/usr/local/Cellar/zeromq/4.1.2/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -m32 -std=c++11
@@ -43,7 +43,7 @@ ifeq ($(config),debug_x64)
   TARGET = $(TARGETDIR)/server
   OBJDIR = ../../../obj/macosx/gmake/x64/Debug/server
   DEFINES += -D_DEBUG
-  INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I/usr/local/Cellar/zeromq/4.1.2/include
+  INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I../../../deps/picojson_serializer -I../../../deps/picojson -I/usr/local/Cellar/zeromq/4.1.2/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -m64 -std=c++11
@@ -70,7 +70,7 @@ ifeq ($(config),release_x32)
   TARGET = $(TARGETDIR)/server
   OBJDIR = ../../../obj/macosx/gmake/x32/Release/server
   DEFINES +=
-  INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I/usr/local/Cellar/zeromq/4.1.2/include
+  INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I../../../deps/picojson_serializer -I../../../deps/picojson -I/usr/local/Cellar/zeromq/4.1.2/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m32 -O2 -std=c++11
@@ -97,7 +97,7 @@ ifeq ($(config),release_x64)
   TARGET = $(TARGETDIR)/server
   OBJDIR = ../../../obj/macosx/gmake/x64/Release/server
   DEFINES +=
-  INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I/usr/local/Cellar/zeromq/4.1.2/include
+  INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I../../../deps/picojson_serializer -I../../../deps/picojson -I/usr/local/Cellar/zeromq/4.1.2/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++11

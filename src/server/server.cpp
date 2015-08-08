@@ -40,42 +40,9 @@ int main() {
         subscribe_on(rxcpp::synchronize_new_thread()).
         publish();
 
-    // non-blocking subscription
-    auto grouped_heartbeats = worker_heartbeats
-        .group_by(
-            [](worker_heartbeat const& s) { return s.id; },
-            [](worker_heartbeat const& s) { return s.beat; }
-            )
-        ;
-
-    grouped_heartbeats.subscribe(
-        [](rxcpp::grouped_observable<std::string, int64_t> g) {
-            auto key = g.get_key();
-            g.subscribe(
-                [key](int64_t beat) {
-                    std::cout << key << ":" << beat << std::endl;
-                }
-            );
-
-            using timeout_t = std::pair<std::chrono::steady_clock::duration, std::chrono::steady_clock::time_point>;
-
-            //auto timeout = g
-            //    //.combine_latest(3 second beat)
-            //    .map([](int64_t) { return std::chrono::steady_clock::now(); })
-            //    .scan(  std::make_pair(std::chrono::steady_clock::duration(),std::chrono::steady_clock::now()),
-            //            [](timeout_t last, std::chrono::steady_clock::time_point now) {
-            //        return std::make_pair(now - last.second, now);
-            //    })
-            //    .filter([](timeout_t entry) {
-            //        return entry.first > std::chrono::seconds(3);
-            //    })
-            //;
-
-            //timeout.subscribe([key](timeout_t) {
-            //    std::cout << "Worker " << key << " timeout";
-            //});
-        }
-    );
+    worker_heartbeats.subscribe([](worker_heartbeat const& hb) {
+        std::cout << hb.id << ":" << hb.beat << std::endl;
+    });
 
     // todo: worker appearing and disappearing identifiable via timeout
     // todo: remove explicit heartbeat output

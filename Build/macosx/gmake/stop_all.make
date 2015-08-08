@@ -13,8 +13,8 @@ endif
 ifeq ($(config),debug_x32)
   RESCOMP = windres
   TARGETDIR = ../../../bin/macosx/gmake/x32/Debug
-  TARGET = $(TARGETDIR)/worker
-  OBJDIR = ../../../obj/macosx/gmake/x32/Debug/worker
+  TARGET = $(TARGETDIR)/stop_all
+  OBJDIR = ../../../obj/macosx/gmake/x32/Debug/stop_all
   DEFINES += -D_DEBUG
   INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I../../../deps/picojson_serializer -I../../../deps/picojson -I/usr/local/Cellar/zeromq/4.1.2/include
   FORCE_INCLUDE +=
@@ -40,8 +40,8 @@ endif
 ifeq ($(config),debug_x64)
   RESCOMP = windres
   TARGETDIR = ../../../bin/macosx/gmake/x64/Debug
-  TARGET = $(TARGETDIR)/worker
-  OBJDIR = ../../../obj/macosx/gmake/x64/Debug/worker
+  TARGET = $(TARGETDIR)/stop_all
+  OBJDIR = ../../../obj/macosx/gmake/x64/Debug/stop_all
   DEFINES += -D_DEBUG
   INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I../../../deps/picojson_serializer -I../../../deps/picojson -I/usr/local/Cellar/zeromq/4.1.2/include
   FORCE_INCLUDE +=
@@ -67,8 +67,8 @@ endif
 ifeq ($(config),release_x32)
   RESCOMP = windres
   TARGETDIR = ../../../bin/macosx/gmake/x32/Release
-  TARGET = $(TARGETDIR)/worker
-  OBJDIR = ../../../obj/macosx/gmake/x32/Release/worker
+  TARGET = $(TARGETDIR)/stop_all
+  OBJDIR = ../../../obj/macosx/gmake/x32/Release/stop_all
   DEFINES +=
   INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I../../../deps/picojson_serializer -I../../../deps/picojson -I/usr/local/Cellar/zeromq/4.1.2/include
   FORCE_INCLUDE +=
@@ -94,8 +94,8 @@ endif
 ifeq ($(config),release_x64)
   RESCOMP = windres
   TARGETDIR = ../../../bin/macosx/gmake/x64/Release
-  TARGET = $(TARGETDIR)/worker
-  OBJDIR = ../../../obj/macosx/gmake/x64/Release/worker
+  TARGET = $(TARGETDIR)/stop_all
+  OBJDIR = ../../../obj/macosx/gmake/x64/Release/stop_all
   DEFINES +=
   INCLUDES += -I../../../deps/cppzmq -I../../../deps/rxcpp/Rx/v2/src -I../../../deps/sole -I../../../deps/picojson_serializer -I../../../deps/picojson -I/usr/local/Cellar/zeromq/4.1.2/include
   FORCE_INCLUDE +=
@@ -119,8 +119,7 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 OBJECTS := \
-	$(OBJDIR)/sole.o \
-	$(OBJDIR)/worker.o \
+	$(OBJDIR)/stop_all.o \
 
 RESOURCES := \
 
@@ -135,7 +134,7 @@ ifeq (/bin,$(findstring /bin,$(SHELL)))
 endif
 
 $(TARGET): $(GCH) $(OBJECTS) $(LDDEPS) $(RESOURCES) ${CUSTOMFILES}
-	@echo Linking worker
+	@echo Linking stop_all
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -156,7 +155,7 @@ else
 endif
 
 clean:
-	@echo Cleaning worker
+	@echo Cleaning stop_all
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(OBJDIR)
@@ -178,10 +177,7 @@ $(GCH): $(PCH)
 	$(SILENT) $(CXX) -x c++-header $(ALL_CXXFLAGS) -o "$@" -MF "$(@:%.gch=%.d)" -c "$<"
 endif
 
-$(OBJDIR)/sole.o: ../../../deps/sole/sole.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/worker.o: ../../../src/worker/worker.cpp
+$(OBJDIR)/stop_all.o: ../../../src/common/stop_all.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
