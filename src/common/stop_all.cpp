@@ -13,7 +13,7 @@ int main() {
     for (auto i = 0; i < 3; i++) {
         static const char* stop = "stop";
         zmq::message_t msg(strlen(stop) + 1);
-        snprintf((char*)msg.data(), strlen(stop) + 1, stop);
+        snprintf((char*)msg.data(), strlen(stop) + 1, "%s", stop);
 
         kill_pub.send(msg);
         std::this_thread::sleep_for(std::chrono::seconds(1));
