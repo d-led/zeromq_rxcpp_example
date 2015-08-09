@@ -2,12 +2,13 @@
 
 #include "cancellation_token.h"
 
-#include <zmq.hpp>
-
 // travis hack
 #ifndef ZMQ_STREAM
 #define ZMQ_STREAM 0
 #endif
+
+#include <zmq.hpp>
+
 
 class zmq_cancellation_token {
     zmq::context_t& ctx;
