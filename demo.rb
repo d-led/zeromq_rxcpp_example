@@ -11,10 +11,11 @@ def start(what)
 end
 
 def start_demo(what)
-	os = 'linux'
-	os = 'macosx' if `uname`.downcase.start_with? 'darwin'
+	bitness = 
+	start_dir = "bin/linux/gmake/x#{1.size * 8}/Release/"
+	start_dir = "bin/macosx/gmake/x#{1.size * 8}/Release/" if `uname`.downcase.start_with? 'darwin'
 
-	start 'bin/' + os + '/gmake/x64/Release/' + what
+	start start_dir + what
 end
 
 [

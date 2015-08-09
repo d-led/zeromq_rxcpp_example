@@ -13,7 +13,8 @@ zeromq_root = {
 
 zeromq_lib = {
 	win = 'libzmq-v120-mt-4_0_4',
-	osx = 'zmq'
+	osx = 'zmq',
+	lin = { 'zmq', 'pthread' }
 }
 
 includedirs {
@@ -57,6 +58,10 @@ function link_zeromq()
 	configuration 'macosx'
 		links {
 			zeromq_lib.osx,
+		}
+	configuration 'linux'
+		links {
+			zeromq_lib.lin,
 		}
 	configuration '*'
 end
