@@ -1,4 +1,4 @@
-#include "zmq_cancellation_token.h" //for the hack
+#include "zmq_cancellation_token.h" //for the travis compat hack
 #include <zmq.hpp>
 #include <iostream>
 #include <chrono>

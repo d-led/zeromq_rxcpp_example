@@ -2,7 +2,7 @@
 
 #include "cancellation_token.h"
 
-// travis hack
+// travis compat hack
 #ifndef ZMQ_STREAM
 #define ZMQ_STREAM 0
 #endif

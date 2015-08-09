@@ -14,3 +14,4 @@ before_script:
 
 script:
   - make -C Build/linux/gmake config=release_x64
+  - ruby demo.rb
