@@ -1,12 +1,12 @@
 #define PICOJSON_USE_INT64
 #include <picojson_serializer.h> //including before any mention of max macro
 
+#include "../common/zmq_cancellation_token.h"
+#include "../common/dtos.h"
+
 #include <iostream>
 #include <zmq.hpp>
 #include <rxcpp/rx.hpp>
-
-#include "../common/zmq_cancellation_token.h"
-#include "../common/dtos.h"
 
 int main() {
     zmq::context_t context(1);
