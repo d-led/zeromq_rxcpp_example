@@ -1,3 +1,4 @@
+#include "zmq_cancellation_token.h" //for the hack
 #include <zmq.hpp>
 #include <iostream>
 #include <chrono>
