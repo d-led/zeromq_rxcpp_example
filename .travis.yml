@@ -13,4 +13,4 @@ before_script:
   - export CXX="g++-4.9"
 
 script:
-  - make -C Build/linux/gmake config=release_x64 -DZMQ_STREAM=0
+  - make -C Build/linux/gmake config=release_x64
