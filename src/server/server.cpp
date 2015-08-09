@@ -9,7 +9,6 @@
 #include "../common/dtos.h"
 
 int main() {
-
     zmq::context_t context(1);
     zmq_cancellation_token token(context);
 
@@ -22,16 +21,20 @@ int main() {
     pull_from_workers.bind(socket_config.c_str());
 
     std::cout<<"Starting listening at "<<socket_config<<std::endl;
+
     
     // publish stream of heartbeats
     auto worker_heartbeats = rxcpp::observable<>::
         create<worker_heartbeat>(
             [&pull_from_workers,&token](rxcpp::subscriber<worker_heartbeat> out){
-                while (true) {
+                while (!token.cancelled()) {
                     zmq::message_t request;
                     pull_from_workers.recv(&request);
                     worker_heartbeat res;
-                    picojson::convert::from_string(std::string(static_cast<char*>(request.data()), request.size()), res);
+                    picojson::convert::from_string(
+                        std::string(static_cast<char*>(request.data()), request.size()),
+                        res
+                    );
                     out.on_next(res);
                 }
                 out.on_completed();
@@ -40,11 +43,23 @@ int main() {
         subscribe_on(rxcpp::synchronize_new_thread()).
         publish();
 
-    worker_heartbeats.subscribe([](worker_heartbeat const& hb) {
-        std::cout << hb.id << ":" << hb.beat << std::endl;
-    });
 
-    // todo: worker appearing and disappearing identifiable via timeout
+    // subscribe to the heartbeats
+    worker_heartbeats.subscribe(
+        [](worker_heartbeat const& hb) {
+            std::cout << hb.id << ":" << hb.beat << std::endl;
+        },
+        // on error
+        [](std::exception_ptr ep){
+                try {
+                    std::rethrow_exception(ep);
+                } catch (const std::exception& ex) {
+                    std::cout<<"OnError: "<<ex.what()<<std::endl;
+                }
+        }
+    );
+
+    // todo: worker appearing and disappearing identifiable
     // todo: remove explicit heartbeat output
 
     // start loop on input thread and block until complete
@@ -52,5 +67,5 @@ int main() {
         connect_forever().
         subscribe();
 
-    token.wait();
+    token.wait(); // todo: subscription dies later than context
 }
