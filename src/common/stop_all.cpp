@@ -5,7 +5,7 @@
 #include <thread>
 
 int main() {
-    std::cout << "stopping everybody" << std::endl;
+    std::cout << "stop_all: stopping everybody" << std::endl;
 
     zmq::context_t context(1);
     zmq::socket_t kill_pub(context, ZMQ_PUB);

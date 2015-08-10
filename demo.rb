@@ -26,6 +26,7 @@ end
 	['15s','stop_all'],
 ].each do |task|
 	scheduler.in task[0] do
+		puts "starting #{task[1]}"
 		start_demo task[1]
 	end
 end
