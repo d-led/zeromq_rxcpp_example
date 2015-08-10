@@ -10,8 +10,6 @@ def start(what)
 	pipe.close
 end
 
-exit
-
 def start_demo(what)
 	start_dir = "bin/linux/gmake/x#{1.size * 8}/Release/"
 	start_dir = "bin/macosx/gmake/x#{1.size * 8}/Release/" if `uname`.downcase.start_with? 'darwin'
