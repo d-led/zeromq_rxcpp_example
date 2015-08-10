@@ -20,7 +20,7 @@ int main() {
     zmq::socket_t pull_from_workers(context, ZMQ_PULL);
     pull_from_workers.bind(socket_config.c_str());
 
-    std::cout<<"Starting listening at "<<socket_config<<std::endl;
+    std::cout<<"Server: starting listening at "<<socket_config<<std::endl;
 
     
     // publish stream of heartbeats
@@ -47,14 +47,14 @@ int main() {
     // subscribe to the heartbeats
     worker_heartbeats.subscribe(
         [](worker_heartbeat const& hb) {
-            std::cout << hb.id << ":" << hb.beat << std::endl;
+            std::cout << "Server: worker (" << hb.id << ") heartbeat #" << hb.beat << std::endl;
         },
         // on error
         [](std::exception_ptr ep){
                 try {
                     std::rethrow_exception(ep);
                 } catch (const std::exception& ex) {
-                    std::cout<<"OnError: "<<ex.what()<<std::endl;
+                    std::cout<<"Server: OnError: "<<ex.what()<<std::endl;
                 }
         }
     );
