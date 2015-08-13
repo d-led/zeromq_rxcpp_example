@@ -15,6 +15,7 @@ addons:
   apt:
     sources:
       - boost-latest
+      - ubuntu-toolchain-r-test
     packages:
       - g++-5
       - lua5.1
