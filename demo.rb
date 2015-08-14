@@ -11,6 +11,7 @@ def start(what)
 end
 
 def start_demo(what)
+	# todo: just search for the latest binary with the sought name in the folder
 	start_dir = "bin/linux/gmake/x#{1.size * 8}/Release/"
 	start_dir = "bin/macosx/gmake/x#{1.size * 8}/Release/" if `uname`.downcase.start_with? 'darwin'
 
