@@ -11,11 +11,13 @@ def start(what)
 end
 
 def start_demo(what)
-	# todo: just search for the latest binary with the sought name in the folder
-	start_dir = "bin/linux/gmake/x#{1.size * 8}/Release/"
-	start_dir = "bin/macosx/gmake/x#{1.size * 8}/Release/" if `uname`.downcase.start_with? 'darwin'
+	absolute_path_to_executable = 	(
+										(Dir.glob("bin/**/"+ what +".*")) + 
+										(Dir.glob("bin/**/"+ what      ))
+									).max_by {|f| File.mtime(f)}
 
-	start start_dir + what
+	# puts absolute_path_to_executable
+	start absolute_path_to_executable
 end
 
 [
